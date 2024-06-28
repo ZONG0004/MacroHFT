@@ -1,5 +1,6 @@
 # MacroHFT
-This is the offical implementation of the KDD 2024 "MacroHFT: Memory Augmented Context-aware Reinforcement Learning On High Frequency Trading".
+This is the official implementation of the KDD 2024 "MacroHFT: Memory Augmented Context-aware Reinforcement Learning On High Frequency Trading".
+https://arxiv.org/abs/2406.14537
 
 To run the demo code:
 
