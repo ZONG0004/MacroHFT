@@ -17,11 +17,11 @@ ROOT = str(pathlib.Path(__file__).resolve().parents[3])
 sys.path.append(ROOT)
 sys.path.insert(0, ".")
 
-from minute.model.net import *
-from minute.env.high_level_env import Testing_Env, Training_Env
-from minute.RL.util.utili import get_ada, get_epsilon, LinearDecaySchedule
-from minute.RL.util.replay_buffer import ReplayBuffer_High
-from minute.RL.util.memory import episodicmemory
+from MacroHFT.model.net import *
+from MacroHFT.env.high_level_env import Testing_Env, Training_Env
+from MacroHFT.RL.util.utili import get_ada, get_epsilon, LinearDecaySchedule
+from MacroHFT.RL.util.replay_buffer import ReplayBuffer_High
+from MacroHFT.RL.util.memory import episodicmemory
 
 os.environ["MKL_NUM_THREADS"] = "1"
 os.environ["NUMEXPR_NUM_THREADS"] = "1"
@@ -75,11 +75,11 @@ class DQN(object):
         self.result_path = os.path.join("./result/high_level", '{}'.format(args.dataset), args.exp)
         self.model_path = os.path.join(self.result_path,
                                        "seed_{}".format(self.seed))
-        self.train_data_path = os.path.join(ROOT,
+        self.train_data_path = os.path.join(ROOT, "MacroHFT",
                                         "data", args.dataset, "whole")
-        self.val_data_path = os.path.join(ROOT,
+        self.val_data_path = os.path.join(ROOT, "MacroHFT",
                                         "data", args.dataset, "whole")
-        self.test_data_path = os.path.join(ROOT,
+        self.test_data_path = os.path.join(ROOT, "MacroHFT",
                                         "data", args.dataset, "whole")
         self.dataset=args.dataset
         self.num_step = args.num_step
@@ -127,14 +127,14 @@ class DQN(object):
         self.vol_3 = subagent(
             self.n_state_1, self.n_state_2, self.n_action, 64).to(self.device)        
         model_list_slope = [
-            "./result/low_level/ETHUSDT/slope/1/best_model.pkl", 
-            "./result/low_level/ETHUSDT/slope/2/best_model.pkl",
-            "./result/low_level/ETHUSDT/slope/3/best_model.pkl"
+            "./result/low_level/ETHUSDT/best_model/slope/1/best_model.pkl", 
+            "./result/low_level/ETHUSDT/best_model/slope/2/best_model.pkl",
+            "./result/low_level/ETHUSDT/best_model/slope/3/best_model.pkl"
         ]
         model_list_vol = [
-            "./result/low_level/ETHUSDT/vol/1/best_model.pkl",
-            "./result/low_level/ETHUSDT/vol/2/best_model.pkl",
-            "./result/low_level/ETHUSDT/vol/3/best_model.pkl"
+            "./result/low_level/ETHUSDT/best_model/vol/1/best_model.pkl",
+            "./result/low_level/ETHUSDT/best_model/vol/2/best_model.pkl",
+            "./result/low_level/ETHUSDT/best_model/vol/3/best_model.pkl"
         ]
         self.slope_1.load_state_dict(
             torch.load(model_list_slope[0], map_location=self.device))

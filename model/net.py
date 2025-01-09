@@ -10,6 +10,7 @@ import math
 import sys
 import os
 
+max_punish = 1e12
 
 def modulate(x, shift, scale):
     return x * (1 + scale) + shift
@@ -36,6 +37,8 @@ class subagent(nn.Module):
             nn.GELU(approximate="tanh"),
             nn.Linear(hidden_dim * 4, 1)
         )
+
+        self.register_buffer("max_punish", torch.tensor(max_punish))
 
     def forward(self, 
                 single_state: torch.tensor,

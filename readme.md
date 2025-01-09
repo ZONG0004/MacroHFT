@@ -14,5 +14,7 @@ and put the folder under data folder.
 Run scripts/decomposition.sh for data decomposition and labeling. 
 ## Step 2
 Run scripts/low_level.sh for low-level policy optimization. 
+
+Update: We now provide trained model checkpoints for sub-agents, which can be directly used to train meta-policy.
 ## Step 3
 Run scripts/high_level.sh for meta-policy optimization. 

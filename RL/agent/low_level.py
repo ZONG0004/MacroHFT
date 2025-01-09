@@ -79,11 +79,11 @@ class DQN(object):
         self.label = int(args.label.split('_')[1])
         self.model_path = os.path.join(self.result_path,
                                        "seed_{}".format(self.seed))
-        self.train_data_path = os.path.join(ROOT,
+        self.train_data_path = os.path.join(ROOT, "MacroHFT",
                                         "data", args.dataset, "train")
-        self.val_data_path = os.path.join(ROOT,
+        self.val_data_path = os.path.join(ROOT, "MacroHFT",
                                         "data", args.dataset, "val")
-        self.test_data_path = os.path.join(ROOT,
+        self.test_data_path = os.path.join(ROOT, "MacroHFT",
                                         "data", args.dataset, "test")
         if args.clf == 'slope':
             with open(os.path.join(self.train_data_path, 'slope_labels.pkl'), 'rb') as file:
@@ -361,12 +361,13 @@ class DQN(object):
             if return_rate_eval > best_return_rate:
                 best_return_rate = return_rate_eval
                 best_model = self.eval_net.state_dict()
+                print("best model updated to epoch ", epoch_counter)
             epoch_return_rate_train_list = []
             epoch_final_balance_train_list = []
             epoch_required_money_train_list = []
             epoch_reward_sum_train_list = []
         best_model_path = os.path.join("./result/low_level", 
-                                        '{}'.format(self.dataset), '{}'.format(self.clf), self.label, 'best_model.pkl')
+                                        '{}'.format(self.dataset), '{}'.format(self.clf), str(self.label), 'best_model.pkl')
         torch.save(best_model.state_dict(), best_model_path)
 
 
